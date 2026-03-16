@@ -1,17 +1,39 @@
+import java.io.File
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
-    `maven-publish`
+    alias(libs.plugins.vanniktech.maven.publish)
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("debug") {
-            groupId = "io.github.cerrativan.composebook"
-            artifactId = "composebook-ui"
-            version = libs.versions.composebook.get()
+mavenPublishing {
+    configure(com.vanniktech.maven.publish.AndroidSingleVariantLibrary("debug"))
+    coordinates("io.github.cerrativan.composebook", "composebook-ui", libs.versions.composebook.get())
+    publishToMavenCentral()
 
-            afterEvaluate { from(components["debug"]) }
+    signAllPublications()
+
+    pom {
+        name = "ComposeBook UI"
+        description = "UI library for ComposeBook — a live component catalog for Jetpack Compose"
+        url = "https://github.com/Cerrativan/ComposeBook"
+        licenses {
+            license {
+                name = "Apache License 2.0"
+                url = "https://www.apache.org/licenses/LICENSE-2.0"
+            }
+        }
+        developers {
+            developer {
+                id = "Cerrativan"
+                name = "Ivan Di Sante"
+                url = "https://github.com/Cerrativan"
+            }
+        }
+        scm {
+            url = "https://github.com/Cerrativan/ComposeBook"
+            connection = "scm:git:git://github.com/Cerrativan/ComposeBook.git"
+            developerConnection = "scm:git:ssh://git@github.com/Cerrativan/ComposeBook.git"
         }
     }
 }
@@ -26,10 +48,6 @@ android {
         minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    publishing {
-        singleVariant("debug")
     }
 
     buildTypes {

@@ -2,10 +2,11 @@ plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
     `maven-publish`
+    id("com.gradle.plugin-publish") version "1.3.0"
 }
 
 group = "io.github.cerrativan.composebook"
-version = "0.1.0-SNAPSHOT"
+version = "0.1.0"
 
 publishing {
     repositories {
@@ -14,6 +15,10 @@ publishing {
 }
 
 gradlePlugin {
+
+    website = "https://github.com/Cerrativan/ComposeBook/tree/master/composebook-plugin"
+    vcsUrl = "https://github.com/Cerrativan/ComposeBook.git"
+
     plugins {
         create("composebookPlugin") {
             id = "io.github.cerrativan.composebook"

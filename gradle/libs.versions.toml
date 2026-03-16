@@ -1,5 +1,6 @@
 [versions]
-composebook = "0.1.0-SNAPSHOT"
+composebook = "0.1.0"
+vanniktechPublish = "0.35.0"
 agp = "9.0.1"
 coreKtx = "1.10.1"
 junit = "4.13.2"
@@ -44,6 +45,7 @@ composebook-annotations = { group = "io.github.cerrativan.composebook", name = "
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktechPublish" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
