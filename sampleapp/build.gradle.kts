@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    id("io.github.cerrativan.composebook") version "0.1.0"
+    id("com.google.devtools.ksp") version "2.0.21-1.0.28"
+    id("io.github.cerrativan.composebook") version "0.1.2"
 }
 
 android {
