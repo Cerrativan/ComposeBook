@@ -10,23 +10,24 @@ Annotate composables with `@Page`, connect a device or emulator, and run one Gra
 
 - Android project with Jetpack Compose enabled
 - `minSdk` 24 or higher
-- KSP (Kotlin Symbol Processing) — added automatically by the plugin
+- KSP (Kotlin Symbol Processing) — must be applied manually (see Setup)
 
 ---
 
 ## Setup
 
-Apply the plugin in your app module's `build.gradle.kts`:
+Add KSP and the ComposeBook plugin to your app module's `build.gradle.kts`:
 
 ```kotlin
 plugins {
-    id("io.github.cerrativan.composebook") version "0.1.0-SNAPSHOT"
+    id("com.google.devtools.ksp") version "<your-kotlin-version>-1.0.x"
+    id("io.github.cerrativan.composebook") version "0.1.2"
 }
 ```
 
-> **Note:** ComposeBook is not yet published to Maven Central. Publication is coming soon. In the meantime, refer to the repository for local setup instructions.
+> KSP must be declared before ComposeBook. The KSP version must match your Kotlin version — e.g. for Kotlin `2.1.0` use `2.1.0-1.0.29`. Find the matching version at [github.com/google/ksp/releases](https://github.com/google/ksp/releases).
 
-That is all. The plugin automatically configures KSP, adds the annotation processor, and includes the UI library. No additional dependency declarations or manifest changes are required.
+That is all. ComposeBook automatically wires in the annotation processor and UI library for debug builds. No additional dependency declarations or manifest changes are required.
 
 ---
 
@@ -90,11 +91,12 @@ The catalog displays a searchable, filterable list of all `@Page`-annotated comp
 
 ## How it works
 
-1. The Gradle plugin applies KSP and wires in the annotation processor and UI library for debug builds only.
-2. At build time, KSP scans the project for `@Page` annotations and generates a `PagesRegistry` containing references to all annotated composables.
-3. A `ComposebookActivity` is generated and injected into the debug APK automatically — no manifest changes needed.
-4. The `composebookRun` task installs the APK and launches the catalog activity via ADB.
-5. ComposeBook has zero footprint in release builds.
+1. The consumer applies KSP and the ComposeBook plugin.
+2. ComposeBook wires in the annotation processor and UI library for debug builds only.
+3. At build time, KSP scans the project for `@Page` annotations and generates a `PagesRegistry` containing references to all annotated composables.
+4. A `ComposebookActivity` is generated and injected into the debug APK automatically — no manifest changes needed.
+5. The `composebookRun` task installs the APK and launches the catalog activity via ADB.
+6. ComposeBook has zero footprint in release builds.
 
 ---
 
@@ -117,8 +119,12 @@ The catalog displays a searchable, filterable list of all `@Page`-annotated comp
 - Searchable and filterable catalog UI
 - Zero release footprint
 - Single Gradle task to build and launch
+- KSP applied transparently by the plugin
 
-**v2 (planned)**
+**v0.2 (planned)**
+- Kotlin Multiplatform support — use `@Page` in shared modules targeting Android
+
+**v1 (planned)**
 - `@PageParameter` annotation for live parameter controls — tweak component state directly from the catalog UI without modifying code
 
 ---

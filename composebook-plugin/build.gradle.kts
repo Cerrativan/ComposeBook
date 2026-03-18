@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.github.cerrativan.composebook"
-version = "0.1.1"
+version = "0.1.2"
 
 publishing {
     repositories {
@@ -33,5 +33,4 @@ gradlePlugin {
 dependencies {
     implementation(gradleApi())
     compileOnly("com.android.tools.build:gradle:9.0.1")
-    implementation("com.google.devtools.ksp:symbol-processing-gradle-plugin:2.0.21-1.0.28")
 }

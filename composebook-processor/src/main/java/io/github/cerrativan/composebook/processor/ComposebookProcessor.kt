@@ -1,6 +1,5 @@
 package io.github.cerrativan.composebook.processor
 
-import io.github.cerrativan.composebook.annotations.Page
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
