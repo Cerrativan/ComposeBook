@@ -1,5 +1,5 @@
 [versions]
-composebook = "0.1.0"
+composebook = "0.1.1"
 vanniktechPublish = "0.35.0"
 agp = "9.0.1"
 coreKtx = "1.10.1"

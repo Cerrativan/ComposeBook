@@ -3,7 +3,7 @@ package io.github.cerrativan.composebook.plugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-internal const val VERSION = "0.1.0"
+internal const val VERSION = "0.1.1"
 
 class ComposebookPlugin : Plugin<Project> {
     override fun apply(target: Project) {
